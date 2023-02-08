@@ -2,16 +2,30 @@
 
 int main()
 {
-    int n, i;
+    int temp, n, i;
     printf("Enter the no: of the processes :");
     scanf("%d", &n);
     int bt[n], wt[n], tat[n];
-    printf("Enter the burst  time :");
+    printf("Enter the waiting time :");
     for (i = 0; i < n; i++)
     {
 
         scanf("%d", &bt[i]);
     }
+    for (i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+
+            if (bt[j] > bt[j + 1])
+            {
+                temp = bt[j];
+                bt[j] = bt[j + 1];
+                bt[j + 1] = temp;
+            }
+        }
+    }
+
     wt[0] = 0;
 
     for (i = 1; i < n; i++)
