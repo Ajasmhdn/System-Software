@@ -39,7 +39,7 @@ int main(){
 
     for(int i=0;i<j;i++){
         for(int l=0;l<j-i-1;l++){
-            if(b[l]<b[l+1]){
+            if(b[l]>b[l+1]){
                 int temp=b[l];
                 b[l]=b[l+1];
                 b[l+1]=temp;
@@ -51,9 +51,9 @@ int main(){
     for(int i=0;i<k;i++){
         printf("%d->",a[i]);
     }
-    printf("%d->",s-1);
+    printf("%d->0->",s-1);
     for(int i=0;i<j;i++){
-        printf("%d->",b[i]);
+        printf("%d",b[i]);
         if(i==j-1){
             break;
         }
