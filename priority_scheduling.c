@@ -1,51 +1,53 @@
-#include <stdio.h>
-
-int main()
-{
-    int temp, n, i;
-    printf("Enter the no: of the processes :");
-    scanf("%d", &n);
-    int bt[n], wt[n], tat[n];
-    printf("Enter the waiting time :");
-    for (i = 0; i < n; i++)
+#include<stdio.h>
+struct process{
+    int bt;
+    int p;
+};
+int main(){
+    int n,temp,tempbt;
+    printf("Enter the number of processes");
+    scanf("%d",&n);
+    struct process ps[n];
+    int wt[n],tat[n],twt,ttat;
+    for (int i = 0; i < n; i++)
     {
-
-        scanf("%d", &bt[i]);
+        printf("Enter priority and burst time of process %d",i);
+        scanf("%d%d",&ps[i].p,&ps[i].bt);
     }
-    for (i = 0; i < n - 1; i++)
+    for (int i = 0; i < n-1; i++)
     {
-        for (int j = 0; j < n - i - 1; j++)
+        for (int j = 0; j < n-i-1; j++)
         {
-
-            if (bt[j] > bt[j + 1])
+            if (ps[j].p > ps[j+1].p)
             {
-                temp = bt[j];
-                bt[j] = bt[j + 1];
-                bt[j + 1] = temp;
+                temp=ps[j].p;
+                tempbt=ps[j].bt;
+                ps[j].p=ps[j+1].p;
+                ps[j].bt=ps[j+1].bt;
+                ps[j+1].p=temp;
+                ps[j+1].bt=tempbt;
             }
+            
         }
+        
     }
-
-    wt[0] = 0;
-
-    for (i = 1; i < n; i++)
+    wt[0]=0;
+    for (int i = 1; i < n; i++)
     {
-
-        wt[i] = wt[i - 1] + bt[i - 1];
+        wt[i] = wt[i-1]+ps[i-1].bt;
     }
-    int ttat = 0, twt = 0;
-    printf("---------------------------------------\n");
-    printf("| Process | waiting time |   ta time  |\n");
-    for (i = 0; i < n; i++)
+
+    twt=0;
+    ttat=0;
+    for (int i = 0; i < n; i++)
     {
-
-        tat[i] = wt[i] + bt[i];
-        twt = twt + wt[i];
-        ttat = ttat + tat[i];
-        printf("---------------------------------------\n");
-        printf("|    P%d    |     %d        |    %d       |\n", i, wt[i], tat[i]);
+        tat[i] = wt[i]+ps[i].bt;
+        twt += wt[i];
+        ttat += tat[i];
     }
-
-    printf("the average waiting time: %.2f\n", (float)twt / n);
-    printf("the average turnaround time: %.2f", (float)ttat / n);
+    printf("Average waiting time is %.2f",(float)twt/n);
+    printf("\nAverage turnaround time is %.2f",(float)ttat/n);
+    return 0;
+    
+    
 }

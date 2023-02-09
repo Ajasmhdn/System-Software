@@ -34,4 +34,7 @@ int main()
 
     printf("the average waiting time: %.2f\n", (float)twt / n);
     printf("the average turnaround time: %.2f", (float)ttat / n);
+
+    return 0;
+
 }
