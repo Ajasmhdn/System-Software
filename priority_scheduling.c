@@ -6,7 +6,7 @@ int main()
     printf("Enter the no: of the processes :");
     scanf("%d", &n);
     int bt[n], wt[n], tat[n];
-    printf("Enter the burst time :");
+    printf("Enter the waiting time :");
     for (i = 0; i < n; i++)
     {
 
