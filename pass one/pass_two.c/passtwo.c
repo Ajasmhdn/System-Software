@@ -33,7 +33,7 @@ int main()
         }
         else if (strcmp(opcode, "WORD") == 0)
         {
-            fprintf(fp1, "%d\t%s\t%s\t%s\t00000%s\n", address, label, opcode, operand, operand);
+            fprintf(fp1, "%d\t%s\t%s\t%s\t 00000%s\n", address, label, opcode, operand, operand);
         }
         else if ((strcmp(opcode, "RESB") == 0) || (strcmp(opcode, "RESW") == 0))
         {
